@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php
-include "./config/connection.php";
-$result = mysqli_query($connection, "select * from dss_kost");
-$d = mysqli_fetch_array($result);
-while ($d = mysqli_fetch_array($result)) {
-    $d["nama"];
-}
-
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +10,23 @@ while ($d = mysqli_fetch_array($result)) {
     <?php
 
     $arrayOfSample = [
-        "Kost Campur" => [4, 1, 3, 3, 3, 2],
-        "Kost Puskesmas" => [4, 1, 4, 4, 3, 3],
-        "Kost Posyandu" => [3, 5, 4, 3, 4, 5],
-        "Kost Skidipap" => [1, 2, 5, 5, 4, 5]
+        "Kost A1" => [4, 1, 3, 3, 3, 2],
+        "Kost A7" => [4, 1, 4, 4, 3, 3],
+        "Kost A13" => [3, 5, 4, 3, 4, 5],
+        "Kost A23" => [1, 2, 5, 5, 4, 5]
     ];
 
+    // WEIGHT EVERY CRITERIA DYNAMIC
+    $harga = -1 *  abs($_POST['harga']);
+    $luas_kamar =  -1 *  abs($_POST['luas_kamar']);
+    $jarak =  abs($_POST['jarak']);
+    $fasilitas_kamar =  abs($_POST['fasilitas_kamar']);
+    $fasilitas_penunjang =  abs($_POST['fasilitas_penunjang']);
+    $fasilitas_lingkungan =  abs($_POST['fasilitas_lingkungan']);
+    $arrayOfWeight = [$harga, $luas_kamar, $jarak, $fasilitas_kamar, $fasilitas_penunjang, $fasilitas_penunjang];
+
     // WEIGHT EVERY CRITERIA
-    $arrayOfWeight = [-5, -4, 5, 3, 2, 4];
+    // $arrayOfWeight = [-5, -4, 5, 3, 2, 4];
     $sumOfWeight = 0;
     foreach ($arrayOfWeight as $key => $value) {
         $sumOfWeight += abs($value);
