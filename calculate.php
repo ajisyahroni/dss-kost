@@ -12,18 +12,21 @@
     $arrayOfSample = [
         "Kost A1" => [4, 1, 3, 3, 3, 2],
         "Kost A7" => [4, 1, 4, 4, 3, 3],
-        "Kost A13" => [3, 5, 4, 3, 4, 5],
-        "Kost A23" => [1, 2, 5, 5, 4, 5]
+        "Kost A13ss" => [3, 5, 4, 3, 4, 5],
+        "Kost A23fa" => [1, 2, 5, 5, 4, 5],
+        "Kost A23f" => [1, 2, 5, 5, 4, 5],
+        "Kost A23d" => [1, 2, 5, 5, 4, 5],
+        "Kost A23s" => [1, 2, 5, 5, 4, 5]
     ];
 
     // WEIGHT EVERY CRITERIA DYNAMIC
     $harga = -1 *  abs($_POST['harga']);
-    $luas_kamar =  -1 *  abs($_POST['luas_kamar']);
-    $jarak =  abs($_POST['jarak']);
+    $jarak =  -1 * abs($_POST['jarak']);
+    $luas_kamar =    abs($_POST['luas_kamar']);
     $fasilitas_kamar =  abs($_POST['fasilitas_kamar']);
     $fasilitas_penunjang =  abs($_POST['fasilitas_penunjang']);
     $fasilitas_lingkungan =  abs($_POST['fasilitas_lingkungan']);
-    $arrayOfWeight = [$harga, $luas_kamar, $jarak, $fasilitas_kamar, $fasilitas_penunjang, $fasilitas_penunjang];
+    $arrayOfWeight = [$harga, $jarak, $luas_kamar, $fasilitas_kamar, $fasilitas_penunjang, $fasilitas_penunjang];
 
     // WEIGHT EVERY CRITERIA
     // $arrayOfWeight = [-5, -4, 5, 3, 2, 4];
