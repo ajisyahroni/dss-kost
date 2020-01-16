@@ -10,7 +10,7 @@
 </head>
 
 <body class="container">
-    <form action="calculate.php" method="post">
+    <form action="weight_product.php" method="post">
         <label for="harga">Harga</label>
         <br>
         <select name="harga" id="harga">
