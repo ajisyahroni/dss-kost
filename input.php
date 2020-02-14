@@ -10,7 +10,7 @@
 </head>
 
 <body class="container">
-    <form action="weight_product.php" method="post">
+    <form action="formated.php" method="post">
         <label for="harga">Harga</label>
         <br>
         <select name="harga" id="harga">
@@ -80,6 +80,37 @@
             <option value="1">Sangat Tidak Penting</option>
         </select>
 
+        <br>
+
+        <?php
+        include "./config/connection_v2.php";
+        $kriteria_query = "SELECT * from dss_kriteria";
+        $kriteria = mysqli_query($connection, $kriteria_query);
+
+        while ($data = mysqli_fetch_assoc($kriteria)) {
+            echo "
+            <label for='$data[nama]'>$data[nama]</label>
+            <br>
+            <select name='$data[nama]' id='$data[nama]'>
+                <option value='5'>Sangat Penting</option>
+                <option value='4'>Penting</option>
+                <option value='3'>Cukup Penting</option>
+                <option value='2'>Tidak Penting</option>
+                <option value='1'>Sangat Tidak Penting</option>
+            </select><br>";
+        }
+
+
+
+        ?>
+
+        <label for="tipe">Tipe</label>
+        <br />
+        <select name="tipe" id="tipe">
+            <option value="pria">pria</option>
+            <option value="wanita">wanita</option>
+            <option value="campur">campur</option>
+        </select>
         <br>
         <input type="submit" value="submit">
     </form>
