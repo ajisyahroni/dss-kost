@@ -33,15 +33,15 @@ function fuzzyForPrice($price)
 {
     $value = 0;
     if ($price < 250) {
-        $value = 5;
-    } else if ($price > 250 && $price <= 500) {
-        $value = 4;
-    } else if ($price > 500 && $price <= 750) {
-        $value = 3;
-    } else if ($price > 750 && $price <= 1000) {
-        $value = 2;
-    } else {
         $value = 1;
+    } else if ($price > 250 && $price <= 500) {
+        $value = 0.75;
+    } else if ($price > 500 && $price <= 750) {
+        $value = 0.50;
+    } else if ($price > 750 && $price <= 1000) {
+        $value = 0.25;
+    } else {
+        $value = 0;
     }
     return $value;
 }
@@ -50,18 +50,47 @@ function fuzzyForDistance($distance)
 {
     $distanceValue = 0;
     if ($distance < 500) {
-        $distanceValue = 5;
-    } else if ($distance > 500 && $distance <= 750) {
-        $distanceValue = 4;
-    } else if ($distance > 750 && $distance <= 1000) {
-        $distanceValue = 3;
-    } else if ($distance > 1000 && $distance <= 1500) {
-        $distanceValue = 2;
-    } else {
         $distanceValue = 1;
+    } else if ($distance > 500 && $distance <= 750) {
+        $distanceValue = 0.75;
+    } else if ($distance > 750 && $distance <= 1000) {
+        $distanceValue = 0.50;
+    } else if ($distance > 1000 && $distance <= 1500) {
+        $distanceValue = 0.25;
+    } else {
+        $distanceValue = 0;
     }
     return $distanceValue;
 }
+
+
+function fuzzyForRoom($room)
+{
+    $roomValue = 0;
+    switch ($room) {
+        case 6:
+            $roomValue = 0;
+            break;
+        case 9:
+            $roomValue = 0.25;
+            break;
+        case 12:
+            $roomValue = 0.50;
+            break;
+        case 16:
+            $roomValue = 0.75;
+            break;
+        case 20:
+            $roomValue = 1;
+            break;
+        default:
+            $roomValue = 0;
+            break;
+    }
+    return $roomValue;
+}
+
+
 function array_push_assoc($array, $key, $value)
 {
     $array[$key] = $value;
@@ -78,9 +107,9 @@ while ($d = mysqli_fetch_assoc($data)) {
             $arrayOfSample,
             $d['nama_kost'],
             [
-                fuzzyForPrice(abs($d['harga'])),
+                abs($d['harga']),
                 abs($d['luas_kamar']),
-                fuzzyForDistance(abs($d['jarak'])),
+                abs($d['jarak']),
                 abs($d['fasilitas_kamar']),
                 abs($d['fasilitas_penunjang']),
                 abs($d['fasilitas_lingkungan']),
